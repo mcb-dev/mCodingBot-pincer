@@ -9,5 +9,5 @@
 ![Code Style](https://img.shields.io/badge/code%20style-pep8-green)
 
 
-A maintained [pincer](https://github.com/Sigmanificient/mCodingBot) rewrite of 
+A maintained [pincer](https://github.com/Pincer-org/Pincer) rewrite of 
 the mCodingBot.
