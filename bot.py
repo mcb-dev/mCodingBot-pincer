@@ -6,8 +6,6 @@ import pincer
 from pincer import Client
 from pincer.objects import Embed
 
-logging.basicConfig(level=logging.DEBUG)
-
 
 class Bot(Client):
 
@@ -47,4 +45,5 @@ class Bot(Client):
 
 
 if __name__ == '__main__':
+    logging.basicConfig(level=logging.DEBUG)
     Bot(dotenv.dotenv_values('.env').get('TOKEN')).run()
