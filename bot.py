@@ -39,11 +39,11 @@ class Bot(Client):
         )
 
     def embed(self, **kwargs):
-        _embed = Embed(**kwargs, color=self.theme)
-
-        return _embed.set_footer(
-            text=f"{self.user.name} - m!help for " "more information",
-            icon_url=self.user.avatar_url,
+        return Embed(
+            **kwargs,
+            color=self.theme
+        ).set_footer(
+            text=f"{self.bot.username} - m!help for more information",
         )
 
 
