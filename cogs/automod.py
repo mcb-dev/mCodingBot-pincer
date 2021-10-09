@@ -3,14 +3,15 @@ from __future__ import annotations
 import re
 from typing import TYPE_CHECKING
 
-from discord.ext import commands
+from pincer import Client
 
 if TYPE_CHECKING:
     from bot import Bot
-    from discord import Message
+    from pincer.objects import Message
 
 
-class AutoMod(commands.Cog):
+class AutoMod:
+
     def __init__(self, client: Bot):
         self.client = client
 
@@ -31,15 +32,14 @@ class AutoMod(commands.Cog):
             ),
         )
 
-    @commands.Cog.listener()
+    @Client.event
     async def on_message(self, message: Message):
-        if message.author.id == self.client.user.id:
+        if message.author.id == self.client.bot.id:
             return
         content = message.content.replace("\n", " ")
         for bad_reg, resp in self.bad_strings:
             if bad_reg.findall(content):
-                await message.reply(resp)
+                return resp
 
 
-def setup(client: Bot):
-    bot.add_cog(AutoMod(client))
+setup = AutoMod
