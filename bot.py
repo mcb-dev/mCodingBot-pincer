@@ -19,6 +19,11 @@ class Bot(Client):
             token,
             intents=pincer.Intents.all()
         )
+        
+        cogs = ("information",)
+        for cog in cogs:
+            self.load_cog(f"cogs.{cog}")
+            
 
     def load_cogs(self):
         """Load all cogs from the `cogs` directory."""
