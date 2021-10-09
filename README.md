@@ -11,3 +11,7 @@
 
 A maintained [pincer](https://github.com/Pincer-org/Pincer) rewrite of 
 the mCodingBot.
+
+Note: this bot is a community-maintained project.
+Although James Murphy (mCoding) may contribute to it,
+James is neither the maintainer nor the author of most of the code.
