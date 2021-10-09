@@ -1,23 +1,19 @@
 from typing import TYPE_CHECKING
 
 import psutil
-from discord.ext import commands
+from pincer import command
 
 if TYPE_CHECKING:
     from bot import Bot
 
 
-class Dev(commands.Cog):
+class Dev:
     """Admin & Test features"""
 
     def __init__(self, bot: "Bot"):
         self.bot = bot
 
-    @commands.command(
-        name="panel", aliases=("pan",), help="Some data about the panel"
-    )
-    @commands.cooldown(2, 60, commands.BucketType.user)
-    @commands.is_owner()
+    @command(name="panel", description="Some data about the panel", cooldown=2)
     async def panel_stats(self, ctx):
         cols: tuple = ("blue", "green", "yellow", "orange", "red")
         mb: int = 1024 ** 2
@@ -61,29 +57,5 @@ class Dev(commands.Cog):
 
         await ctx.send(embed=_embed)
 
-    @commands.command(name="reload_config", aliases=("reloadconf",))
-    @commands.is_owner()
-    async def reload_config(self, ctx: commands.Context):
-        self.bot.config = self.bot.config.load()
-        await ctx.send("Done.")
 
-    @commands.command(name="reload")
-    @commands.is_owner()
-    async def reload_cogs(self, ctx: commands.Context):
-        c = 0
-
-        for cog in self.bot.cogs:
-            cog_namespaced = f'app.cogs.{cog.name}'
-
-            try:
-                self.bot.unload_extension(cog_namespaced)
-                self.bot.load_extension(cog_namespaced)
-            except Exception as e:
-                await ctx.send(f"Error while reloading {cog.name}: {e}")
-                c += 1
-
-        await ctx.send(f"Reloaded whole bot, error: {c}")
-
-
-def setup(bot: "Bot"):
-    bot.add_cog(Dev(bot))
+setup = Dev
