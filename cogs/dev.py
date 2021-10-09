@@ -1,53 +1,60 @@
+from __future__ import annotations
 from typing import TYPE_CHECKING
 
 import psutil
 from pincer import command
 
 if TYPE_CHECKING:
+    from pincer.objects import Embed
     from bot import Bot
 
 
 class Dev:
     """Admin & Test features"""
 
-    def __init__(self, bot: "Bot"):
-        self.bot = bot
+    def __init__(self, bot: Bot):
+        self.client = bot
 
-    @command(name="panel", description="Some data about the panel", cooldown=2)
-    async def panel_stats(self, ctx):
+    @command(name="panel", description="Some data about the panel")
+    async def panel_command(self) -> Embed:
+        """Panel status command."""
         cols: tuple = ("blue", "green", "yellow", "orange", "red")
+
         mb: int = 1024 ** 2
 
         vm = psutil.virtual_memory()
-        percent: int = 100 * (vm.used / vm.total)
-        cpu_freq, cpu_percent = psutil.cpu_freq(), psutil.cpu_percent()
-        disk = psutil.disk_usage(".")
-        percent: int = 100 * (disk.used / disk.total)
+        cpu_freq = psutil.cpu_freq()
+        cpu_percent = psutil.cpu_percent()
+        disk = psutil.disk_usage('.')
 
-        await ctx.send(
-            embed=self.bot.embed(title="Bot Stats").add_field(
-                name=f":{cols[int(percent // 20)]}_square: __RAM__",
-                value="\n".join(
-                    (
-                        f"> `{percent:.3f}` **%**",
-                        f" - `{vm.total / mb:,.3f}` **Mb**",
-                    )
-                ),
-            ).add_field(
-                name=f":{cols[int(cpu_percent // 20)]}_square: __CPU__",
-                value=(
-                    f"> `{cpu_percent:.3f}`**%**\n"
-                    f"- `{cpu_freq.current / 1000:.1f}`/"
-                    f"`{cpu_freq.max / 1000:.1f}` **Ghz**"
-                ),
-            ).add_field(
-                name=f":{cols[int(percent // 20)]}_square: __DISK__",
-                value="\n".join(
-                    (
-                        f"> `{percent:.3f}` **%**",
-                        f"- `{disk.total / mb:,.3f}` **Mb**",
-                    )
-                )
+        stats = {
+            'ram': (
+                100 * (vm.used / vm.total),
+                f'{(vm.total / mb) / 1000:,.3f}',
+                'Gb'
+            ),
+            'cpu': (
+                cpu_percent,
+                f"{cpu_freq.current / 1000:.1f}`/`{cpu_freq.max / 1000:.1f}",
+                'Ghz'
+            ),
+            'disk': (
+                100 * (disk.used / disk.total),
+                f'{disk.total / mb:,.0f}',
+                'Mb'
+            )
+        }
+
+        return self.client.embed(
+            title="Panel Stats",
+            description="The bot is hosted on a private vps."
+        ).add_fields(
+            stats.items(),
+            map_title=lambda name: (
+                f":{cols[int(stats[name][0] // 20)]}_square: __{name.upper()}__"
+            ),
+            map_values=lambda percent, info, unit: (
+                f"> `{percent:.3f}` **%**\n- `{info}` **{unit}**"
             )
         )
 
