@@ -11,6 +11,11 @@ class Bot(Client):
             token,
             intents=pincer.Intents.all()
         )
+        
+        cogs = ("information",)
+        for cog in cogs:
+            self.load_cog(f"cogs.{cog}")
+            
 
     @Client.event
     async def on_ready(self):
