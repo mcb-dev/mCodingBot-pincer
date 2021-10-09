@@ -42,7 +42,7 @@ class Bot(Client):
             **kwargs,
             color=self.theme
         ).set_footer(
-            text=f"{self.bot.username} - m!help for more information",
+            text=f"{self.bot.username} - /help for more information",
         )
 
 
