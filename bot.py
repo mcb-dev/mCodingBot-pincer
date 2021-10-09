@@ -1,11 +1,10 @@
-from glob import glob
 import logging
+from glob import glob
 
 import dotenv
 import pincer
 from pincer import Client
-from pincer.objects import Message, Embed
-
+from pincer.objects import Embed
 
 logging.basicConfig(level=logging.DEBUG)
 

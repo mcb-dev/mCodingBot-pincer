@@ -7,7 +7,7 @@ from pincer import Client
 
 if TYPE_CHECKING:
     from bot import Bot
-    from pincer.objects import Message
+    from pincer.objects import UserMessage, Guild
 
 
 class AutoMod:
@@ -29,14 +29,16 @@ class AutoMod:
                     "This is a dangerous function and can cause your "
                     "computer to freeze. Please don't run it."
                 ),
-            ),
+            )
         )
 
     @Client.event
-    async def on_message(self, message: Message):
+    async def on_message(self, message: UserMessage):
         if message.author.id == self.client.bot.id:
             return
+
         content = message.content.replace("\n", " ")
+
         for bad_reg, resp in self.bad_strings:
             if bad_reg.findall(content):
                 return resp
