@@ -1,3 +1,4 @@
+from __future__ import annotations
 from os import listdir
 from typing import TYPE_CHECKING, Dict
 
@@ -10,8 +11,8 @@ if TYPE_CHECKING:
 
 
 class Information:
-    def __init__(self, bot: "Bot") -> None:
-        self.bot = bot
+    def __init__(self, client: Bot) -> None:
+        self.client = client
 
         self.files: Dict[str, str] = {}
         folders = (".", "cogs")
@@ -25,11 +26,10 @@ class Information:
         self.files["Total"] = "\n".join(self.files.values())
 
     @command(name="code", description="Provide the code info")
-    async def get_code(self):
-        embed = Embed(
+    async def get_code(self) -> Embed:
+        embed = self.client.embed(
             title="Code structure",
-            description=f"This is the whole code structure of {self.bot.user.name}!",
-            color=0x0B7CD3,
+            description=f"The whole code structure of {self.client.bot}!"
         )
 
         for file_name, file in self.files.items():
@@ -41,6 +41,7 @@ class Information:
                     - `{len(file.splitlines()):,}` lines
                     """
                 ),
+                inline=True
             )
 
         return embed
