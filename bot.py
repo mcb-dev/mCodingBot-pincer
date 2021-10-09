@@ -1,12 +1,16 @@
 import dotenv
+import pincer
 from pincer import Client
-from pincer.client import event
+from pincer.objects import Message
 
 
 class Bot(Client):
 
-    def __init__(self, *args, **kwargs):
-        super(Bot, self).__init__(*args, **kwargs)
+    def __init__(self, token: str):
+        super(Bot, self).__init__(
+            token,
+            intents=pincer.Intents.all()
+        )
 
     @Client.event
     async def on_ready(self):
