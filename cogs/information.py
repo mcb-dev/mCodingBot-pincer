@@ -26,7 +26,7 @@ class Information:
 
         self.files["Total"] = "\n".join(self.files.values())
 
-    @command(name="about", description="Provide the code info")
+    @command(name="code", description="Provide the code info")
     async def get_code(self) -> Embed:
         return self.client.embed(
             title="Code structure",
