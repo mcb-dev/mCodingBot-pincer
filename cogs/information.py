@@ -26,21 +26,34 @@ class Information:
 
         self.files["Total"] = "\n".join(self.files.values())
 
+    @command(name="links", description="Useful links")
+    async def links(self):
+        return self.client.embed(
+            title="Useful links",
+            description=inspect.cleandoc(
+                """
+                **[mCoding Youtube](https://www.youtube.com/channel/UCaiL2GDNpLYH6Wokkk1VNcg)**
+                **[mCoding repo](https://github.com/mCodingLLC/VideosSampleCode)**
+                **[mCoding-Bot repo](https://github.com/Sigmanificient/mCodingBot)**
+                """
+            ),
+        )
+
     @command(name="code", description="Provide the code info")
     async def get_code(self) -> Embed:
         return self.client.embed(
             title="Code structure",
-            description=f"The whole code structure of {self.client.bot}!"
+            description=f"The whole code structure of {self.client.bot}!",
         ).add_fields(
             self.files,
             map_title=lambda name: f"> {name}",
             map_values=lambda f: inspect.cleandoc(
-                    f"""
+                f"""
                     - `{len(f):,}` characters
                     - `{len(f.splitlines()):,}` lines
                     """
-                ),
-            inline=True
+            ),
+            inline=True,
         )
 
 
