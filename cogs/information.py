@@ -1,8 +1,12 @@
 from __future__ import annotations
-from os import listdir
-from typing import TYPE_CHECKING, Dict
 
 import inspect
+from os import listdir
+from platform import python_version
+from typing import Dict
+from typing import TYPE_CHECKING
+
+import pincer
 from pincer.commands import command
 
 if TYPE_CHECKING:
@@ -55,6 +59,28 @@ class Information:
             ),
             inline=True,
         )
+
+    @command(name="bot", description="Display the bot information")
+    async def bot_info(self):
+        embed = self.client.embed(
+            title=f"{self.client.bot} Bot Information",
+            description="This bot was created by Circuit#5585, Sigmanificient#330 and trag1c#3879",
+        )
+
+        info = {
+            "Python": python_version(),
+            "Pincer": pincer.__version__,
+            "Commands": len(self.client.chat_commands),
+            "Extensions": len(self.client.get_cogs()),
+        }
+
+        embed.add_fields(
+            info.items(),
+            map_title=lambda name: f"> {name}",
+            map_values=lambda value: f"`{value}`",
+        )
+
+        return embed
 
 
 setup = Information
