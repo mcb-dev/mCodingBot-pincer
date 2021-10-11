@@ -15,4 +15,4 @@ repos:
     rev: v2.6.0
     hooks:
     -   id: reorder-python-imports
-        args: [--application-directories=.:src, --py36-plus]
+        args: [--application-directories=.:src, --py38-plus]
