@@ -8,9 +8,7 @@
 ![Lines of code](https://img.shields.io/tokei/lines/github/Sigmanificient/mCodingBot)
 ![Code Style](https://img.shields.io/badge/code%20style-pep8-green)
 
-
-A maintained [pincer](https://github.com/Pincer-org/Pincer) rewrite of 
-the mCodingBot.
+A maintained [pincer](https://github.com/Pincer-org/Pincer) rewrite of the mCodingBot.
 
 Note: this bot is a community-maintained project.
 Although James Murphy (mCoding) may contribute to it,
