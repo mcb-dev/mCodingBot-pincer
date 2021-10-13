@@ -6,15 +6,19 @@ import pincer
 from pincer import Client
 from pincer.objects import Embed
 
+from config import Config
+
 
 class Bot(Client):
 
-    def __init__(self, token: str):
+    def __init__(self):
         self.theme = 0x0B7CD3
         self.load_cogs()
 
+        self.config = Config()
+
         super(Bot, self).__init__(
-            token,
+            self.config.token,
             intents=pincer.Intents.all()
         )
 
@@ -46,4 +50,4 @@ class Bot(Client):
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)
-    Bot(dotenv.dotenv_values('.env').get('TOKEN')).run()
+    Bot().run()
