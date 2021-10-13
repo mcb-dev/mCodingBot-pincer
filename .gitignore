@@ -7,3 +7,6 @@ venv
 
 # Bot secret
 .env
+
+# Bot Archives for server upload
+*.zip
