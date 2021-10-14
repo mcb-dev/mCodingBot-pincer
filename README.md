@@ -14,3 +14,15 @@ This is a fun bot that is used in James Murphy's mCoding Discord server.
 Note: this bot is a community-maintained project.
 Although James Murphy (mCoding) may contribute to it,
 James is neither the maintainer nor the author of most of the code.
+
+After cloning and activating your virtualenv, install with
+
+```
+pip install -e .
+```
+
+To run the bot,
+
+```
+python -m mcoding_bot
+```
