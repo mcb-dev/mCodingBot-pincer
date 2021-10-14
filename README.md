@@ -9,6 +9,7 @@
 ![Code Style](https://img.shields.io/badge/code%20style-pep8-green)
 
 A maintained [pincer](https://github.com/Pincer-org/Pincer) rewrite of the mCodingBot.
+This is a fun bot that is used in James Murphy's mCoding Discord server.
 
 Note: this bot is a community-maintained project.
 Although James Murphy (mCoding) may contribute to it,
