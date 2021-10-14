@@ -10,17 +10,11 @@ from config import Config
 
 
 class Bot(Client):
-
-    def __init__(self):
+    def __init__(self, config: Config):
         self.theme = 0x0B7CD3
         self.load_cogs()
-
-        self.config = Config()
-
-        super(Bot, self).__init__(
-            self.config.token,
-            intents=pincer.Intents.all()
-        )
+        self.config = config
+        super(Bot, self).__init__(self.config.token, intents=pincer.Intents.all())
 
     def load_cogs(self):
         """Load all cogs from the `cogs` directory."""
@@ -40,14 +34,18 @@ class Bot(Client):
         )
 
     def embed(self, **kwargs):
-        return Embed(
-            **kwargs,
-            color=self.theme
-        ).set_footer(
+        return Embed(**kwargs, color=self.theme).set_footer(
             text=f"{self.bot.username} - /help for more information",
         )
 
 
-if __name__ == '__main__':
+def main():
     logging.basicConfig(level=logging.DEBUG)
-    Bot().run()
+    dotenv_values = dotenv.dotenv_values(".env")
+    config = Config.from_dict(dotenv_values)
+    bot = Bot(config)
+    bot.run()
+
+
+if __name__ == "__main__":
+    main()

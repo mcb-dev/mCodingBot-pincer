@@ -1,27 +1,33 @@
+import dataclasses
+import typing
+from typing import Dict
+from typing import Optional
+
 from pincer.utils.snowflake import Snowflake
-import dotenv
 
 
+@dataclasses.dataclass
 class Config:
-    __config = {}
-    __config_map = (
-        ("mcoding_server", Snowflake),
-        ("mcoding_yt_id", str),
-        ("member_count_channel", Snowflake),
-        ("subscriber_count_channel", Snowflake),
-        ("token", str),
-        ("view_count_channel", Snowflake),
-        ("yt_api_key", str),
-    )
+    mcoding_server: Snowflake
+    mcoding_yt_id: str
+    member_count_channel: Snowflake
+    subscriber_count_channel: Snowflake
+    token: str
+    view_count_channel: Snowflake
+    yt_api_key: str
 
-    def __init__(self):
-        __env = dotenv.dotenv_values('.env')
+    @classmethod
+    def from_dict(cls, d: Dict[str, Optional[str]]):
+        d = {key.lower(): value for key, value in d.items()}
+        _type = typing.get_type_hints(cls)
 
-        for key, _type in self.__config_map:
-            if not __env.get(key.upper()):
-                raise ValueError(f'Missing key {key} within `.env`.')
+        if missing := _type.keys() - d.keys():
+            raise ValueError(f"Missing keys: {missing}")
 
-            self.__config[key.lower()] = _type(__env.pop(key.upper()))
+        if extra := d.keys() - _type.keys():
+            raise ValueError(f"Extra keys: {extra}")
 
-    def __getattr__(self, item):
-        return self.__config.get(item)
+        if null_keys := {key for key, value in d.items() if not value}:
+            raise ValueError(f"Missing required values for: {null_keys}")
+
+        return cls(**{key: _type[key](value) for key, value in d.items()})
