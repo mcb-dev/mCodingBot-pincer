@@ -7,7 +7,7 @@ from pincer import command
 
 if TYPE_CHECKING:
     from pincer.objects import Embed
-    from bot import Bot
+    from mcoding_bot.bot import Bot
 
 
 class Dev:
@@ -26,7 +26,7 @@ class Dev:
         vm = psutil.virtual_memory()
         cpu_freq = psutil.cpu_freq()
         cpu_percent = psutil.cpu_percent()
-        disk = psutil.disk_usage(".")
+        disk = psutil.disk_usage("")
 
         stats = {
             "ram": (100 * (vm.used / vm.total), f"{(vm.total / mb) / 1000:,.3f}", "Gb"),

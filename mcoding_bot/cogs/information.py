@@ -10,7 +10,7 @@ import pincer
 from pincer.commands import command
 
 if TYPE_CHECKING:
-    from bot import Bot
+    from mcoding_bot.bot import Bot
     from pincer.objects import Embed
 
 

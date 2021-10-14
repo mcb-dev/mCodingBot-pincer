@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING
 from pincer import Client
 
 if TYPE_CHECKING:
-    from bot import Bot
+    from mcoding_bot.bot import Bot
     from pincer.objects import UserMessage
 
 

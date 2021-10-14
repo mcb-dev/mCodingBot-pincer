@@ -4,10 +4,10 @@ from typing import TYPE_CHECKING
 
 from pincer.utils import TaskScheduler
 
-from tasks.update_channels import update_channels
+from mcoding_bot.tasks.update_channels import update_channels
 
 if TYPE_CHECKING:
-    from bot import Bot
+    from mcoding_bot.bot import Bot
 
 
 class YtStatistics:

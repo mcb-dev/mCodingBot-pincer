@@ -17,3 +17,8 @@ repos:
     hooks:
       - id: reorder-python-imports
         args: [ --application-directories=.:src, --py38-plus ]
+
+  - repo: https://github.com/MarcoGorelli/absolufy-imports
+    rev: v0.3.0
+    hooks:
+      - id: absolufy-imports

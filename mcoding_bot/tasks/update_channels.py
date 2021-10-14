@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING
 import aiohttp
 
 if TYPE_CHECKING:
-    from bot import Bot
+    from mcoding_bot.bot import Bot
 
 BASE_URL = "https://www.googleapis.com/youtube/v3/channels"
 _last_stats = {"subs": 0.0, "views": 0.0}
