@@ -1,9 +1,10 @@
 from glob import glob
 
 import pincer
-from config import Config
 from pincer import Client
 from pincer.objects import Embed
+
+from mcoding_bot.config import Config
 
 
 class Bot(Client):
