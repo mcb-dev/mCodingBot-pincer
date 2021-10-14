@@ -7,11 +7,10 @@ from pincer import Client
 
 if TYPE_CHECKING:
     from bot import Bot
-    from pincer.objects import UserMessage, Guild
+    from pincer.objects import UserMessage
 
 
 class AutoMod:
-
     def __init__(self, client: Bot):
         self.client = client
 
@@ -29,7 +28,7 @@ class AutoMod:
                     "This is a dangerous function and can cause your "
                     "computer to freeze. Please don't run it."
                 ),
-            )
+            ),
         )
 
     @Client.event

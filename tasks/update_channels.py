@@ -1,17 +1,15 @@
 from __future__ import annotations
 
-import time
 from math import log
+from typing import TYPE_CHECKING
 
 import aiohttp
-
-from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from bot import Bot
 
 BASE_URL = "https://www.googleapis.com/youtube/v3/channels"
-_last_stats = {"subs": 0., "views": 0.}
+_last_stats = {"subs": 0.0, "views": 0.0}
 
 
 async def get_stats(bot):
@@ -47,8 +45,8 @@ async def get_stats(bot):
         return _last_stats
 
     print("Youtube statistics fetched!")
-    _last_stats['subs'] = subs
-    _last_stats['views'] = views
+    _last_stats["subs"] = subs
+    _last_stats["views"] = views
     return _last_stats
 
 
@@ -82,7 +80,7 @@ async def update_channels(self: Bot):
     stats = await get_stats(self)
     print(stats)
 
-    print(display_stats(stats['subs']))
-    print(display_stats(stats['views']))
+    print(display_stats(stats["subs"]))
+    print(display_stats(stats["views"]))
     # TODO: update channels
     # Waiting for pincer 0.9.2 release in order to use `channel.edit`
