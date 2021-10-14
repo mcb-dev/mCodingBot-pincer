@@ -14,7 +14,7 @@ class Bot(Client):
         self.theme = 0x0B7CD3
         self.load_cogs()
         self.config = config
-        super(Bot, self).__init__(self.config.token, intents=pincer.Intents.all())
+        super().__init__(self.config.token, intents=pincer.Intents.all())
 
     def load_cogs(self):
         """Load all cogs from the `cogs` directory."""
