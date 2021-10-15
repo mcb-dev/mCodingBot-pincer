@@ -1,7 +1,5 @@
-import asyncio
 import logging
 
-import aiohttp
 import dotenv
 
 from mcoding_bot.bot import Bot
@@ -11,11 +9,5 @@ logging.basicConfig(level=logging.DEBUG)
 dotenv_values = dotenv.dotenv_values(".env")
 config = Config.from_dict(dotenv_values)
 
-
-async def main():
-    async with aiohttp.ClientSession() as session:
-        return Bot(config, session)
-
-
-bot = asyncio.run(main())
+bot = Bot(config)
 bot.run()

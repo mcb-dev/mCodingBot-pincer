@@ -1,4 +1,5 @@
 from glob import glob
+from typing import Optional
 
 import aiohttp
 import pincer
@@ -9,12 +10,18 @@ from mcoding_bot.config import Config
 
 
 class Bot(Client):
-    def __init__(self, config: Config, session: aiohttp.ClientSession):
+    def __init__(self, config: Config):
         self.theme = 0x0B7CD3
         self.load_cogs()
         self.config = config
-        self.session = session
+        self.session: Optional[aiohttp.ClientSession] = None
         super().__init__(self.config.token, intents=pincer.Intents.all())
+
+    async def get_session(self):
+        if self.session is None:
+            self.session = aiohttp.ClientSession()
+
+        return self.session
 
     def load_cogs(self):
         """Load all cogs from the `cogs` directory."""
@@ -37,3 +44,7 @@ class Bot(Client):
         return Embed(**kwargs, color=self.theme).set_footer(
             text=f"{self.bot.username} - /help for more information",
         )
+
+    async def close(self):
+        await self.session.close()
+        return await super().close()
