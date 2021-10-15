@@ -10,3 +10,6 @@ venv
 
 # Bot Archives for server upload
 *.zip
+
+# For people who will use the pip install -e . command
+*.egg-info
