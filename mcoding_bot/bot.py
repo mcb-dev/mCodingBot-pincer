@@ -1,5 +1,6 @@
 from glob import glob
 
+import aiohttp
 import pincer
 from pincer import Client
 from pincer.objects import Embed
@@ -8,10 +9,11 @@ from mcoding_bot.config import Config
 
 
 class Bot(Client):
-    def __init__(self, config: Config):
+    def __init__(self, config: Config, session: aiohttp.ClientSession):
         self.theme = 0x0B7CD3
         self.load_cogs()
         self.config = config
+        self.session = session
         super().__init__(self.config.token, intents=pincer.Intents.all())
 
     def load_cogs(self):

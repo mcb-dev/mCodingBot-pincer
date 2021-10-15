@@ -3,7 +3,6 @@ from __future__ import annotations
 from math import log
 from typing import TYPE_CHECKING
 
-import aiohttp
 
 if TYPE_CHECKING:
     from mcoding_bot.bot import Bot
@@ -12,13 +11,13 @@ BASE_URL = "https://www.googleapis.com/youtube/v3/channels"
 _last_stats = {"subs": 0.0, "views": 0.0}
 
 
-async def get_stats(bot):
+async def get_stats(bot: Bot):
     link = (
         f"{BASE_URL}?part=statistics&id={bot.config.mcoding_yt_id}"
         f"&key={bot.config.yt_api_key}"
     )
 
-    async with aiohttp.ClientSession().get(link) as res:
+    async with bot.session.get(link) as res:
         response = await res.json()
 
     print(response)
