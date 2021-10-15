@@ -17,12 +17,12 @@ James is neither the maintainer nor the author of most of the code.
 
 After cloning and activating your virtualenv, install with
 
-```
+```sh
 pip install -e .
 ```
 
 To run the bot,
 
-```
+```sh
 python -m mcoding_bot
 ```
