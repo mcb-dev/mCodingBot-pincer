@@ -1,4 +1,4 @@
-pincer>=0.9.0
+pincer~=0.9.0
 python-dotenv~=0.19.1
 psutil~=5.8.0
 
