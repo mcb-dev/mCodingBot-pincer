@@ -55,18 +55,17 @@ class Information:
             map_title=lambda name: f"> {name}",
             map_values=lambda f: inspect.cleandoc(
                 f"""
-                    - `{len(f):,}` characters
-                    - `{len(f.splitlines()):,}` lines
-                    """
+                - `{len(f):,}` characters
+                - `{len(f.splitlines()):,}` lines
+                """
             ),
-            inline=True,
         )
 
     @command(name="bot", description="Display the bot information")
     async def bot_info(self):
         embed = self.client.embed(
             title=f"{self.client.bot} Bot Information",
-            description="This bot was created by Circuit#5585, Sigmanificient#330 and trag1c#3879",
+            description="This bot was created by mCoding discord community.",
         )
 
         info = {
