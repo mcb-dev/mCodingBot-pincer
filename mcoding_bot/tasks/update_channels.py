@@ -80,7 +80,11 @@ async def update_channels(self: Bot):
     stats = await get_stats(self)
     print(stats)
 
-    print(display_stats(stats["subs"]))
+    print()
     print(display_stats(stats["views"]))
-    # TODO: update channels
-    # Waiting for pincer 0.9.2 release in order to use `channel.edit`
+
+    sub_channel = await self.get_channel(self.config.subscriber_count_channel)
+    view_channel = await self.get_channel(self.config.view_count_channel)
+
+    await sub_channel.edit(name=f"Subs: {display_stats(stats['subs'])}")
+    await view_channel.edit(name=f"Views: {display_stats(stats['views'])}")
