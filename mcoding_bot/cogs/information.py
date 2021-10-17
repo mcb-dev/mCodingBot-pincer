@@ -22,10 +22,12 @@ class Information:
         folders = (".", "cogs")
 
         for path in folders:
-            files = (file for file in listdir(path) if file.endswith(".py"))
+            files = (
+                file for file in listdir(f"mcoding_bot/{path}") if file.endswith(".py")
+            )
 
             for file in files:
-                with open(f"{path}/{file}", encoding="utf-8") as f:
+                with open(f"mcoding_bot/{path}/{file}", encoding="utf-8") as f:
                     self.files[file] = f.read()
 
         self.files["Total"] = "\n".join(self.files.values())
