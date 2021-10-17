@@ -46,7 +46,9 @@ class Dev:
     def __init__(self, client: Bot):
         self.client = client
 
-    @command(name="panel", description="Some data about the panel")
+    @command(
+        name="panel", description="Some data about the panel", guild=826875707418214451
+    )
     async def panel_command(self) -> Embed:
         """Panel status command."""
         cols: tuple = ("blue", "green", "yellow", "orange", "red")

@@ -32,7 +32,7 @@ class Information:
 
         self.files["Total"] = "\n".join(self.files.values())
 
-    @command(name="links", description="Useful links")
+    @command(name="links", description="Useful links", guild=826875707418214451)
     async def links(self):
         return self.client.embed(
             title="Useful links",
@@ -45,7 +45,7 @@ class Information:
             ),
         )
 
-    @command(name="code", description="Provide the code info")
+    @command(name="code", description="Provide the code info", guild=826875707418214451)
     async def get_code(self) -> Embed:
         return self.client.embed(
             title="Code structure",
@@ -61,7 +61,9 @@ class Information:
             ),
         )
 
-    @command(name="bot", description="Display the bot information")
+    @command(
+        name="bot", description="Display the bot information", guild=826875707418214451
+    )
     async def bot_info(self):
         embed = self.client.embed(
             title=f"{self.client.bot} Bot Information",
