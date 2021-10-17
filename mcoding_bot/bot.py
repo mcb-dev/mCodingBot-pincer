@@ -26,6 +26,9 @@ class Bot(Client):
     def load_cogs(self):
         """Load all cogs from the `cogs` directory."""
         for cog in glob("mcoding_bot/cogs/*.py"):
+            if "__init__" in cog:
+                continue
+
             self.load_cog(cog.replace("/", ".").replace("\\", ".")[:-3])
             print("Loaded cogs from", cog)
 
