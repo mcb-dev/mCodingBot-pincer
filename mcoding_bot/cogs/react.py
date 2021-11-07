@@ -17,13 +17,20 @@ class React:
         self.client = client
         self.rust_search = compile("\\brust\\b",flags=I)
 
+    async def create_reaction(self, message: UserMessage, reaction: str):
+        await message._http.put(
+            f"/channels/{message.channel_id}/messages/{message.id}/reactions/"
+            f"{reaction}/@me",
+            None
+        )    
+
     @Client.event
     async def on_message(self, message: UserMessage):
         if message.type == MessageType.GUILD_MEMBER_JOIN:
-            await message.react("👋")
+            await self.create_reaction(message, "👋")
         else:
             if self.rust_search.findall(message.content):
-                await message.react("🚀")
+                await self.create_reaction(message, "🚀")
 
 
 setup = React
