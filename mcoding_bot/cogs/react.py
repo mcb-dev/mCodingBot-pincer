@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
-import re
+from re import compile, I
 
 from pincer import Client
 from pincer.client import Bot
@@ -15,14 +15,14 @@ class React:
 
     def __init__(self, client: Bot) -> None:
         self.client = client
-        self.rust_search = re.compile("\\brust\\b") 
+        self.rust_search = compile("\\brust\\b",flags=I)
 
     @Client.event
     async def on_message(self, message: UserMessage):
         if message.type == MessageType.GUILD_MEMBER_JOIN:
             await message.react("👋")
         else:
-            if self.rust_search.findall(message.content.lower()):
+            if self.rust_search.findall(message.content):
                 await message.react("🚀")
 
 
