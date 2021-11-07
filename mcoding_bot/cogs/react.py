@@ -27,9 +27,10 @@ class React:
     async def on_message(self, message: UserMessage):
         if message.type == MessageType.GUILD_MEMBER_JOIN:
             await self.create_reaction(message, "👋")
-        else:
-            if self.rust_search.findall(message.content):
-                await self.create_reaction(message, "🚀")
+            return
+
+        if self.rust_search.findall(message.content):
+            await self.create_reaction(message, "🚀")
 
 
 setup = React
