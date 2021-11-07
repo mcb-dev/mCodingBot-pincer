@@ -15,14 +15,14 @@ class React:
 
     def __init__(self, client: Bot) -> None:
         self.client = client
-        self.rust_search = compile("\\brust\\b",flags=I)
+        self.rust_search = compile("\\brust\\b", flags=I)
 
     async def create_reaction(self, message: UserMessage, reaction: str):
         await message._http.put(
             f"/channels/{message.channel_id}/messages/{message.id}/reactions/"
             f"{reaction}/@me",
             None
-        )    
+        )
 
     @Client.event
     async def on_message(self, message: UserMessage):
