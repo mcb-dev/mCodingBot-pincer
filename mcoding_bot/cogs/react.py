@@ -4,7 +4,6 @@ from typing import TYPE_CHECKING
 from re import compile, I
 
 from pincer import Client
-from pincer.client import Bot
 from pincer.objects.message import MessageType
 
 if TYPE_CHECKING:
@@ -13,7 +12,7 @@ if TYPE_CHECKING:
 
 class React:
 
-    def __init__(self, client: Bot) -> None:
+    def __init__(self, client: Client) -> None:
         self.client = client
         self.rust_search = compile("\\brust\\b", flags=I)
 
