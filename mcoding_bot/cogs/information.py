@@ -72,7 +72,7 @@ class Information:
 
         info = {
             "Python": python_version(),
-            "Pincer": pincer.__version__,
+            "Pincer": str(pincer.__version__),
             "Commands": len(self.client.chat_commands),
             "Extensions": len(self.client.get_cogs()),
         }
