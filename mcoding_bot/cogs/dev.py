@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import platform
 from typing import TYPE_CHECKING
 
 import psutil
@@ -55,7 +56,7 @@ class Dev:
         vm = psutil.virtual_memory()
         cpu_freq = psutil.cpu_freq()
         cpu_percent = psutil.cpu_percent()
-        disk = psutil.disk_usage("")
+        disk = psutil.disk_usage("/")
 
         stats = {
             "ram": _percent_info_unit_ram(vm.used, vm.total),
