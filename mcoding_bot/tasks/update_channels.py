@@ -85,6 +85,13 @@ async def update_channels(self: Bot):
 
     sub_channel = await self.get_channel(self.config.subscriber_count_channel)
     view_channel = await self.get_channel(self.config.view_count_channel)
+    member_channel = await self.get_channel(self.config.member_count_channel)
 
     await sub_channel.edit(name=f"Subs: {display_stats(stats['subs'])}")
     await view_channel.edit(name=f"Views: {display_stats(stats['views'])}")
+
+    member_count = (
+        await self.get_guild(self.config.mcoding_server)
+    ).approximate_member_count
+
+    await member_channel.edit(name=f"Members: {display_stats(member_count)}")
