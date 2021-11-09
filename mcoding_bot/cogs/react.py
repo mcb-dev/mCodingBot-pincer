@@ -14,7 +14,7 @@ class React:
 
     def __init__(self, client: Client) -> None:
         self.client = client
-        self.rust_search = compile("\\brust\\b", flags=I)
+        self.rust_search = compile(r"\brust\b", flags=I)
 
     async def create_reaction(self, message: UserMessage, reaction: str):
         await message._http.put(
