@@ -29,7 +29,7 @@ class React:
             await self.create_reaction(message, "👋")
             return
 
-        if self.rust_search.findall(message.content):
+        if self.rust_search.findall(message.content) and "🚀" in message.content:
             await self.create_reaction(message, "🚀")
 
 
