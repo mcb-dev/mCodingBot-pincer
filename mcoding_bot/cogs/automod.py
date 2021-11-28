@@ -40,7 +40,7 @@ class AutoMod:
 
         for bad_reg, resp in self.bad_strings:
             if bad_reg.findall(content):
-                return resp
+                await (await self.client.get_channel(message.channel_id)).send(resp)
 
 
 setup = AutoMod
