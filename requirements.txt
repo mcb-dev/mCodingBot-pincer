@@ -1,3 +1,3 @@
 pincer~=0.15.0
 python-dotenv~=0.19.2
-psutil~=5.8.0
+psutil~=5.9.0
