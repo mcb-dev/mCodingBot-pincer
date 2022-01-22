@@ -6,10 +6,10 @@ if [[ -d .git ]]; then
 
 fi
 
-python -m venv venv
-source venv/bin/activate
-python -m pip install --upgrade pip
-pip install --upgrade -r requirements.txt
-pip install -e .
+$1 -m venv venv
+$1 venv/bin/activate
+$1 -m pip install --upgrade pip
+$1 -m pip install --upgrade -r requirements.txt
+$1 -m pip install -e .
 
-python -m mcoding_bot
+$1 -m mcoding_bot
