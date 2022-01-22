@@ -1,17 +1,22 @@
 from __future__ import annotations
 
 import inspect
-from os import listdir
+from os import getenv, listdir
 from platform import python_version
-from typing import Dict
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Dict
 
+import dotenv
 import pincer
 from pincer.commands import command
 
 if TYPE_CHECKING:
-    from mcoding_bot.bot import Bot
     from pincer.objects import Embed
+
+    from mcoding_bot.bot import Bot
+
+
+dotenv.load_dotenv()
+MCODING = getenv("MCODING_SERVER")
 
 
 class Information:
@@ -32,7 +37,7 @@ class Information:
 
         self.files["Total"] = "\n".join(self.files.values())
 
-    @command(name="links", description="Useful links", guild=826875707418214451)
+    @command(name="links", description="Useful links", guild=MCODING)
     async def links(self):
         return self.client.embed(
             title="Useful links",
@@ -45,7 +50,7 @@ class Information:
             ),
         )
 
-    @command(name="code", description="Provide the code info", guild=826875707418214451)
+    @command(name="code", description="Provide the code info", guild=MCODING)
     async def get_code(self) -> Embed:
         return self.client.embed(
             title="Code structure",
@@ -61,9 +66,7 @@ class Information:
             ),
         )
 
-    @command(
-        name="bot", description="Display the bot information", guild=826875707418214451
-    )
+    @command(name="bot", description="Display the bot information", guild=MCODING)
     async def bot_info(self):
         embed = self.client.embed(
             title=f"{self.client.bot} Bot Information",

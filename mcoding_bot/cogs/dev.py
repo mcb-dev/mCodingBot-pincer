@@ -1,14 +1,18 @@
 from __future__ import annotations
 
-import platform
+import os
 from typing import TYPE_CHECKING
 
+import dotenv
 import psutil
 from pincer import command
 
 if TYPE_CHECKING:
     from pincer.objects import Embed
+
     from mcoding_bot.bot import Bot
+
+dotenv.load_dotenv()
 
 
 def _percent_info_unit_ram(used, total):
@@ -48,7 +52,9 @@ class Dev:
         self.client = client
 
     @command(
-        name="panel", description="Some data about the panel", guild=826875707418214451
+        name="panel",
+        description="Some data about the panel",
+        guild=int(os.getenv("MCODING_SERVER")),
     )
     async def panel_command(self) -> Embed:
         """Panel status command."""

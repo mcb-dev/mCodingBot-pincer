@@ -1,24 +1,15 @@
 repos:
   - repo: https://github.com/psf/black
-    rev: 21.9b0
+    rev: 21.12b0
     hooks:
       - id: black
-        args: [ --safe ]
-
-  - repo: https://github.com/PyCQA/flake8
-    rev: 3.9.2
+        language_version: python3.9
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.0.0
     hooks:
       - id: flake8
-        language_version: python3
-        args: [ --max-line-length=160 ]
-
-  - repo: https://github.com/asottile/reorder_python_imports
-    rev: v2.6.0
+  - repo: https://github.com/pycqa/isort
+    rev: 5.10.1
     hooks:
-      - id: reorder-python-imports
-        args: [ --application-directories=.:src, --py38-plus ]
-
-  - repo: https://github.com/MarcoGorelli/absolufy-imports
-    rev: v0.3.0
-    hooks:
-      - id: absolufy-imports
+      - id: isort
+        name: isort

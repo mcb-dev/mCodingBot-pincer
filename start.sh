@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#!/bin/bash
 set -euo pipefail
 
 if [[ -d .git ]]; then
@@ -6,10 +6,14 @@ if [[ -d .git ]]; then
 
 fi
 
-python -m venv venv
-source venv/bin/activate
-python -m pip install --upgrade pip
-pip install --upgrade -r requirements.txt
-pip install -e .
+$1 -m pip install --upgrade pip
+$1 -m pip install poetry
+$1 -m poetry install
 
-python -m mcoding_bot
+while true
+do
+    $1 -m poetry run python -m mcoding_bot
+
+    echo "CTRL+C to shutdown..."
+    sleep 5
+done

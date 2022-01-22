@@ -6,8 +6,9 @@ from typing import TYPE_CHECKING
 from pincer import Client
 
 if TYPE_CHECKING:
-    from mcoding_bot.bot import Bot
     from pincer.objects import UserMessage
+
+    from mcoding_bot.bot import Bot
 
 
 class AutoMod:

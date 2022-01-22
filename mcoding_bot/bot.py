@@ -1,3 +1,4 @@
+import asyncio
 from glob import glob
 from typing import Optional
 
@@ -16,6 +17,24 @@ class Bot(Client):
         self.config = config
         self.session: Optional[aiohttp.ClientSession] = None
         super().__init__(self.config.token, intents=pincer.Intents.all())
+
+        self.loop: asyncio.AbstractEventLoop
+        self.stop_future: asyncio.Event
+
+    def run(self):
+        loop = asyncio.get_event_loop()
+        self.loop = loop
+        loop.run_until_complete(self._run())
+        loop.run_until_complete(self._cleanup())
+
+    async def _run(self):
+        self.stop_future = asyncio.Event(loop=self.loop)
+        await self.start_shard(0, 1)
+        await self.stop_future.wait()
+
+    async def _cleanup(self):
+        if self.session and not self.session.closed:
+            await self.session.close()
 
     async def get_session(self):
         if self.session is None:
@@ -48,6 +67,5 @@ class Bot(Client):
             text=f"{self.bot.username} - /help for more information",
         )
 
-    async def close(self):
-        await self.session.close()
-        return await super().close()
+    def close(self):
+        self.stop_future.set()
