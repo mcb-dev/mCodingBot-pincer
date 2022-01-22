@@ -6,10 +6,7 @@ if [[ -d .git ]]; then
 
 fi
 
-$1 -m venv venv
-$1 venv/bin/activate
 $1 -m pip install --upgrade pip
-$1 -m pip install --upgrade -r requirements.txt
-$1 -m pip install -e .
-
-$1 -m mcoding_bot
+$1 -m pip install poetry
+$1 -m poetry install
+$1 -m poetry run python -m mcoding_bot

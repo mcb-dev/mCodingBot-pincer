@@ -79,7 +79,7 @@ def display_stats(stat):
 async def update_channels(self: Bot):
     stats = await get_stats(self)
 
-    sub_channel = await self.get_channel(self.config.subscriber_count_channel)
+    sub_channel = await self.get_channel(self.config.sub_count_channel)
     view_channel = await self.get_channel(self.config.view_count_channel)
     member_channel = await self.get_channel(self.config.member_count_channel)
 

@@ -11,7 +11,7 @@ class Config:
     mcoding_server: Snowflake
     mcoding_yt_id: str
     member_count_channel: Snowflake
-    subscriber_count_channel: Snowflake
+    sub_count_channel: Snowflake
     token: str
     view_count_channel: Snowflake
     yt_api_key: str

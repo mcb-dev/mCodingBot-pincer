@@ -1,7 +1,3 @@
-[build-system]
-requires = ["setuptools>=42.0", "wheel"]
-build-backend = "setuptools.build_meta"
-
 [tool.pytest.ini_options]
 addopts = "--cov=slapping"
 testpaths = [
@@ -21,3 +17,26 @@ warn_return_any = true
 warn_unreachable = true
 warn_unused_configs = true
 no_implicit_reexport = true
+
+[tool.poetry]
+name = "mcodingbot"
+version = "0.0.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pincer = "^0.15.3"
+python-dotenv = "^0.19.2"
+psutil = "^5.9.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
+mypy = "^0.931"
+flake8 = "^4.0.1"
+pre-commit = "^2.17.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
