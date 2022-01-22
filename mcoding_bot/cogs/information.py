@@ -1,18 +1,18 @@
 from __future__ import annotations
 
 import inspect
-from os import listdir, getenv
+from os import getenv, listdir
 from platform import python_version
-from typing import Dict
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Dict
 
 import dotenv
 import pincer
 from pincer.commands import command
 
 if TYPE_CHECKING:
-    from mcoding_bot.bot import Bot
     from pincer.objects import Embed
+
+    from mcoding_bot.bot import Bot
 
 
 dotenv.load_dotenv()
@@ -66,9 +66,7 @@ class Information:
             ),
         )
 
-    @command(
-        name="bot", description="Display the bot information", guild=MCODING
-    )
+    @command(name="bot", description="Display the bot information", guild=MCODING)
     async def bot_info(self):
         embed = self.client.embed(
             title=f"{self.client.bot} Bot Information",

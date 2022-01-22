@@ -9,6 +9,7 @@ from pincer import command
 
 if TYPE_CHECKING:
     from pincer.objects import Embed
+
     from mcoding_bot.bot import Bot
 
 dotenv.load_dotenv()
@@ -51,7 +52,9 @@ class Dev:
         self.client = client
 
     @command(
-        name="panel", description="Some data about the panel", guild=int(os.getenv("MCODING_SERVER"))
+        name="panel",
+        description="Some data about the panel",
+        guild=int(os.getenv("MCODING_SERVER")),
     )
     async def panel_command(self) -> Embed:
         """Panel status command."""

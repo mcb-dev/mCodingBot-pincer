@@ -1,7 +1,6 @@
 import dataclasses
 import typing
-from typing import Dict
-from typing import Optional
+from typing import Dict, Optional
 
 from pincer.utils.snowflake import Snowflake
 

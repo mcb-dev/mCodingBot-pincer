@@ -1,7 +1,7 @@
 from __future__ import annotations
 
+from re import I, compile
 from typing import TYPE_CHECKING
-from re import compile, I
 
 from pincer import Client
 from pincer.objects.message import MessageType
@@ -11,7 +11,6 @@ if TYPE_CHECKING:
 
 
 class React:
-
     def __init__(self, client: Client) -> None:
         self.client = client
         self.rust_search = compile(r"\brust\b", flags=I)
