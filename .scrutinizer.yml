@@ -2,6 +2,7 @@ build:
     environment:
         python:
             version: 3.8.8
+            virtualenv: true
 
 checks:
     python:
