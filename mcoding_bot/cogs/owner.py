@@ -19,7 +19,9 @@ class Owner:
         self.bot = bot
 
     @pincer.command(name="gitpull", guild=MCODING)
-    async def gitpull(self):
+    async def gitpull(self, ctx: pincer.objects.MessageContext):
+        if ctx.author.id not in self.bot.config.owner_ids:
+            return "You don't have permission to do this."
         os.system("git pull")
         self.bot.close()
 

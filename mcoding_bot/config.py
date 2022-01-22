@@ -8,6 +8,7 @@ from pincer.utils.snowflake import Snowflake
 
 @dataclasses.dataclass
 class Config:
+    _owner_ids: str
     mcoding_server: Snowflake
     mcoding_yt_id: str
     member_count_channel: Snowflake
@@ -15,6 +16,10 @@ class Config:
     token: str
     view_count_channel: Snowflake
     yt_api_key: str
+
+    @property
+    def owner_ids(self) -> list[int]:
+        return [int(id.strip()) for id in self._owner_ids.split(",")]
 
     @classmethod
     def from_dict(cls, d: Dict[str, Optional[str]]):
