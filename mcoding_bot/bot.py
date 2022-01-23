@@ -34,6 +34,7 @@ class Bot(Client):
 
     async def _run(self):
         await self.database.connect(
+            host="localhost",
             database=self.config.db_name,
             user=self.config.db_user,
             password=self.config.db_password,
