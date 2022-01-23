@@ -15,14 +15,21 @@ Note: this bot is a community-maintained project.
 Although James Murphy (mCoding) may contribute to it,
 James is neither the maintainer nor the author of most of the code.
 
-After cloning and activating your virtualenv, install with
+After cloning, install with
 
 ```sh
-pip install -e .
+python -m pip install poetry
+poetry install
 ```
 
-To run the bot,
+Then you can run with
 
 ```sh
-python -m mcoding_bot
+poetry run python -m mcoding_bot
+```
+
+You can also just use the start.sh script to install & run
+
+```sh
+./start.sh python
 ```
