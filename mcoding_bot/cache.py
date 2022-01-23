@@ -23,9 +23,9 @@ def _s(num: int) -> Snowflake:
 class Cache:
     def __init__(self, bot: Bot):
         self.bot = bot
-        self._messages = TTLCache[int, "UserMessage | None"](500, 30)
-        self._users = TTLCache[int, "User | None"](500, 30)
-        self._channels = TTLCache[int, "Channel | None"](500, 30)
+        self._messages: TTLCache[int, "UserMessage | None"] = TTLCache(500, 30)
+        self._users: TTLCache[int, "User | None"] = TTLCache(500, 30)
+        self._channels: TTLCache[int, "Channel | None"] = TTLCache(500, 30)
 
     async def gof_message(self, msg_id: int, ch_id: int) -> UserMessage | None:
         if (c := self._messages.get(msg_id, UNDEF.UNDEF)) is not UNDEF.UNDEF:
