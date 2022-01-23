@@ -31,6 +31,8 @@ pincer = "^0.15.3"
 python-dotenv = "^0.19.2"
 psutil = "^5.9.0"
 apgorm = "^0.1.0-beta.9"
+cachetools = "^5.0.0"
+types-cachetools = "^4.2.9"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"

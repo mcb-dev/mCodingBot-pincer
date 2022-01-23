@@ -9,6 +9,9 @@ from pincer.objects import Embed
 
 from mcoding_bot.config import Config
 
+from .database import Database
+from .cache import Cache
+
 
 class Bot(Client):
     def __init__(self, config: Config):
@@ -17,6 +20,9 @@ class Bot(Client):
         self.config = config
         self.session: Optional[aiohttp.ClientSession] = None
         super().__init__(self.config.token, intents=pincer.Intents.all())
+
+        self.database = Database()
+        self.cache = Cache(self)
 
         self.loop: asyncio.AbstractEventLoop
         self.stop_future: asyncio.Event
@@ -28,6 +34,11 @@ class Bot(Client):
         loop.run_until_complete(self._cleanup())
 
     async def _run(self):
+        await self.database.connect(
+            database=self.config.db_name,
+            user=self.config.db_user,
+            password=self.config.db_password,
+        )
         self.stop_future = asyncio.Event(loop=self.loop)
         await self.start_shard(0, 1)
         await self.stop_future.wait()
@@ -35,6 +46,7 @@ class Bot(Client):
     async def _cleanup(self):
         if self.session and not self.session.closed:
             await self.session.close()
+        await self.database.cleanup()
 
     async def get_session(self):
         if self.session is None:

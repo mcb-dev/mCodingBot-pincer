@@ -9,6 +9,11 @@ from pincer.utils.snowflake import Snowflake
 
 @dataclasses.dataclass
 class Config:
+    db_name: str
+    db_user: str
+    db_password: str
+    starboard_id: int
+    required_stars: int
     _owner_ids: str
     mcoding_server: Snowflake
     mcoding_yt_id: str

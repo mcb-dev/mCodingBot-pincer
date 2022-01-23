@@ -1,0 +1,182 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, TypeVar
+import asyncpg
+
+from pincer import Client
+import pincer
+from pincer.objects import (
+    MessageReactionAddEvent, MessageReactionRemoveEvent, UserMessage, Embed
+)
+from pincer.utils.types import MissingType, APINullable
+
+from mcoding_bot.database import Star, Message
+
+if TYPE_CHECKING:
+    from mcoding_bot.bot import Bot
+
+
+_T = TypeVar("_T")
+
+
+def _obj_or_none(obj: APINullable[_T]) -> _T | None:
+    if isinstance(obj, MissingType):
+        return None
+    return obj
+
+
+async def _orig_message(msg_id: int) -> Message | None:
+    if (message := await Message.exists(sb_msg_id=msg_id)):
+        return message
+    return await Message.exists(id=msg_id)
+
+
+def embed_message(
+    msg: UserMessage, points: int, color: int
+) -> tuple[str, Embed]:
+    print(avatar := msg.author.get_avatar_url())
+    print(username := msg.author.username)
+    return f"⭐ **{points} |** <#{msg.channel_id}>", Embed(
+        description=_obj_or_none(msg.content) or "*file only*",
+        color=color,
+    ).set_author(
+        icon_url=avatar,
+        name=username,
+        url="https://pincermademe.dothis",
+    )
+
+
+async def _refresh_message(bot: Bot, message: Message):
+    # get starcount
+    points = await Star.fetch_query().where(message_id=message.id.v).count()
+    message.last_known_star_count.v = points
+
+    # get action
+    action: bool | None = None
+    if points >= bot.config.required_stars:
+        action = True
+    elif points == 0:
+        action = False
+
+    # get the starboard message
+    orig = await bot.cache.gof_message(message.id.v, message.channel_id.v)
+    if not orig:
+        return
+
+    sbmsg = None
+    if message.sb_msg_id.v is not None:
+        sbmsg = await bot.cache.gof_message(
+            message.sb_msg_id.v, bot.config.starboard_id
+        )
+        if not sbmsg:
+            message.sb_msg_id.v = None
+
+    # update
+    if sbmsg is None and action is True:
+        starboard = await bot.cache.gof_channel(bot.config.starboard_id)
+        if not starboard:
+            return
+
+        content, embed = embed_message(orig, points, bot.theme)
+        sbmsg = await starboard.send(
+            pincer.objects.Message(
+                content=content,
+                embeds=[embed],
+            )
+        )
+        assert sbmsg
+        await sbmsg.react("⭐")
+        message.sb_msg_id.v = sbmsg.id
+
+    elif sbmsg is not None:
+        if action is False:
+            await sbmsg.delete()
+            message.sb_msg_id.v = None
+
+        else:
+            content, embed = embed_message(orig, points, bot.theme)
+            await sbmsg.edit(
+                content=content,
+                embeds=[embed],
+            )
+
+    await message.save()
+
+
+class Starboard:
+    def __init__(self, client: Bot):
+        self.client = client
+        self.refreshing: set[int] = set()
+
+    async def refresh_message(self, message: Message):
+        self.refreshing.add(message.id.v)
+        try:
+            await _refresh_message(self.client, message)
+        finally:
+            self.refreshing.remove(message.id.v)
+
+    @Client.event
+    async def on_message_reaction_add(self, event: MessageReactionAddEvent):
+        if (member := _obj_or_none(event.member)) is None:
+            return
+        if (user := _obj_or_none(member.user)) is None:
+            user = await self.client.cache.gof_user(event.user_id)
+            if not user:
+                return
+        if bool(user.bot):
+            return
+
+        if event.emoji.name != "⭐":
+            return
+
+        orig = await _orig_message(event.message_id)
+        if not orig:
+            obj = await self.client.cache.gof_message(
+                event.message_id, event.channel_id
+            )
+            if not obj:
+                return
+            if (author := _obj_or_none(obj.author)) is None:
+                return
+            orig = await Message(
+                id=event.message_id,
+                channel_id=event.channel_id,
+                author_id=author.id,
+            ).create()
+
+        assert self.client.bot is not None
+        if (
+            orig.author_id.v == self.client.bot.id
+            and orig.channel_id.v == self.client.config.starboard_id
+        ):
+            # prevents old starboard messages from reposting
+            return
+
+        if orig.author_id.v == event.user_id:
+            # no self stars
+            return
+
+        try:
+            await Star(message_id=orig.id.v, user_id=event.user_id).create()
+        except asyncpg.UniqueViolationError:
+            # forgiveness, not permission
+            # besides, Star.exists() is async so it might fail anyways
+            pass
+
+        await self.refresh_message(orig)
+
+    @Client.event
+    async def on_message_reaction_remove(
+        self, event: MessageReactionRemoveEvent
+    ):
+        orig = await _orig_message(event.message_id)
+        if not orig:
+            return
+        await Star.delete_query().where(
+            message_id=orig.id.v, user_id=event.user_id
+        ).execute()
+
+        await self.refresh_message(orig)
+
+
+setup = Starboard
