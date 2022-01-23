@@ -32,17 +32,19 @@ async def _orig_message(msg_id: int) -> Message | None:
 
 
 def embed_message(
-    msg: UserMessage, points: int, color: int
+    msg: UserMessage, points: int, bot: Bot
 ) -> tuple[str, Embed]:
-    print(avatar := msg.author.get_avatar_url())
-    print(username := msg.author.username)
     return f"⭐ **{points} |** <#{msg.channel_id}>", Embed(
         description=_obj_or_none(msg.content) or "*file only*",
-        color=color,
+        color=bot.theme,
     ).set_author(
-        icon_url=avatar,
-        name=username,
+        icon_url=msg.author.get_avatar_url(),  # type: ignore
+        name=msg.author.username,  # type: ignore
         url="https://pincermademe.dothis",
+    ).add_field(
+        "​",
+        f"[Go to Message](https://discord.com/channels/"
+        f"{bot.config.mcoding_server}/{msg.channel_id}/{msg.id})"
     )
 
 
@@ -77,7 +79,7 @@ async def _refresh_message(bot: Bot, message: Message):
         if not starboard:
             return
 
-        content, embed = embed_message(orig, points, bot.theme)
+        content, embed = embed_message(orig, points, bot)
         sbmsg = await starboard.send(
             pincer.objects.Message(
                 content=content,
@@ -94,7 +96,7 @@ async def _refresh_message(bot: Bot, message: Message):
             message.sb_msg_id.v = None
 
         else:
-            content, embed = embed_message(orig, points, bot.theme)
+            content, embed = embed_message(orig, points, bot)
             await sbmsg.edit(
                 content=content,
                 embeds=[embed],
