@@ -111,6 +111,8 @@ class Starboard:
         self.refreshing: set[int] = set()
 
     async def refresh_message(self, message: Message):
+        if message.id.v in self.refreshing:
+            return
         self.refreshing.add(message.id.v)
         try:
             await _refresh_message(self.client, message)
