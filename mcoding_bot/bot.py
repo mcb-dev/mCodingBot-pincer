@@ -8,9 +8,8 @@ from pincer import Client
 from pincer.objects import Embed
 
 from mcoding_bot.config import Config
-
-from .database import Database
-from .cache import Cache
+from mcoding_bot.database import Database
+from mcoding_bot.cache import Cache
 
 
 class Bot(Client):
