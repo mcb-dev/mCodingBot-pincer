@@ -33,3 +33,9 @@ You can also just use the start.sh script to install & run
 ```sh
 ./start.sh python
 ```
+
+Note: You need a postgres database setup. Put the dbname, user, and user password into the .env file. The following would work:
+```
+CREATE USER user_name WITH ENCRYPTED PASSWORD 'user_password';
+CREATE DATABASE database_name WITH OWNER user_name;
+```
