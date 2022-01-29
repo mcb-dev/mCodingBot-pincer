@@ -30,7 +30,7 @@ python = "^3.8"
 pincer = "^0.15.3"
 python-dotenv = "^0.19.2"
 psutil = "^5.9.0"
-apgorm = "^0.1.0b10"
+apgorm = "^0.1.0b11"
 cachetools = "^5.0.0"
 types-cachetools = "^4.2.9"
 
