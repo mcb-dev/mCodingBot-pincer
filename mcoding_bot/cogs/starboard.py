@@ -50,8 +50,8 @@ def embed_message(
 
 async def _refresh_message(bot: Bot, message: Message):
     # get starcount
-    points = await Star.fetch_query().where(message_id=message.id.v).count()
-    message.last_known_star_count.v = points
+    points = await Star.fetch_query().where(message_id=message.id).count()
+    message.last_known_star_count = points
 
     # get action
     action: bool | None = None
@@ -61,17 +61,17 @@ async def _refresh_message(bot: Bot, message: Message):
         action = False
 
     # get the starboard message
-    orig = await bot.cache.gof_message(message.id.v, message.channel_id.v)
+    orig = await bot.cache.gof_message(message.id, message.channel_id)
     if not orig:
         return
 
     sbmsg = None
-    if message.sb_msg_id.v is not None:
+    if message.sb_msg_id is not None:
         sbmsg = await bot.cache.gof_message(
-            message.sb_msg_id.v, bot.config.starboard_id
+            message.sb_msg_id, bot.config.starboard_id
         )
         if not sbmsg:
-            message.sb_msg_id.v = None
+            message.sb_msg_id = None
 
     # update
     if sbmsg is None and action is True:
@@ -88,12 +88,12 @@ async def _refresh_message(bot: Bot, message: Message):
         )
         assert sbmsg
         await sbmsg.react("⭐")
-        message.sb_msg_id.v = sbmsg.id
+        message.sb_msg_id = sbmsg.id
 
     elif sbmsg is not None:
         if action is False:
             await sbmsg.delete()
-            message.sb_msg_id.v = None
+            message.sb_msg_id = None
 
         else:
             content, embed = embed_message(orig, points, bot)
@@ -111,13 +111,13 @@ class Starboard:
         self.refreshing: set[int] = set()
 
     async def refresh_message(self, message: Message):
-        if message.id.v in self.refreshing:
+        if message.id in self.refreshing:
             return
-        self.refreshing.add(message.id.v)
+        self.refreshing.add(message.id)
         try:
             await _refresh_message(self.client, message)
         finally:
-            self.refreshing.remove(message.id.v)
+            self.refreshing.remove(message.id)
 
     @Client.event
     async def on_message_reaction_add(self, event: MessageReactionAddEvent):
@@ -150,18 +150,18 @@ class Starboard:
 
         assert self.client.bot is not None
         if (
-            orig.author_id.v == self.client.bot.id
-            and orig.channel_id.v == self.client.config.starboard_id
+            orig.author_id == self.client.bot.id
+            and orig.channel_id == self.client.config.starboard_id
         ):
             # prevents old starboard messages from reposting
             return
 
-        if orig.author_id.v == event.user_id:
+        if orig.author_id == event.user_id:
             # no self stars
             return
 
         try:
-            await Star(message_id=orig.id.v, user_id=event.user_id).create()
+            await Star(message_id=orig.id, user_id=event.user_id).create()
         except asyncpg.UniqueViolationError:
             # forgiveness, not permission
             # besides, Star.exists() is async so it might fail anyways
@@ -177,7 +177,7 @@ class Starboard:
         if not orig:
             return
         await Star.delete_query().where(
-            message_id=orig.id.v, user_id=event.user_id
+            message_id=orig.id, user_id=event.user_id
         ).execute()
 
         await self.refresh_message(orig)
