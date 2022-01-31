@@ -61,7 +61,7 @@ def display_stats(stat):
 
     pretty_stat = round(pretty_stat, 2)
 
-    exp_stat = round(log(int_stat, 2), 3)
+    exp_stat = round(log(int_stat, 2), 1)
     # ^ this might not be as accurate as the member count thing when
     # someone picky actually calculates it, but I suppose it's not
     # gonna be such a problem if it's gonna be shown as e.g. "44.3K"
