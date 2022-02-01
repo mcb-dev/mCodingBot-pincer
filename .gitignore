@@ -4,6 +4,9 @@
 # PyCharm Configuration Folder
 .idea
 
+# VSCode Folder
+.vscode
+
 # Bot Archives for server upload
 *.zip
 
