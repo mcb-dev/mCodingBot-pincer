@@ -46,8 +46,8 @@ def embed_message(
         f"[Go to Message](https://discord.com/channels/"
         f"{bot.config.mcoding_server}/{msg.channel_id}/{msg.id})"
     )
-    if _obj_or_none(msg.attachments):
-        embed.set_image(msg.attachments[0].url)
+    if (attachments := _obj_or_none(msg.attachments)) is not None:
+        embed.set_image(attachments[0].url):
         embed.description = embed.description or f"*{msg.attachments[0].filename}*"
     
     return f"⭐ **{points} |** <#{msg.channel_id}>", embed
