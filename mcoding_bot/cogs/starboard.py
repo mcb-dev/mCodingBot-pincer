@@ -35,7 +35,7 @@ def embed_message(
     msg: UserMessage, points: int, bot: Bot
 ) -> tuple[str, Embed]:
     embed = Embed(
-        description=_obj_or_none(msg.content) or "*file only*",
+        description=_obj_or_none(msg.content),
         color=bot.theme,
     ).set_author(
         icon_url=msg.author.get_avatar_url(),  # type: ignore
