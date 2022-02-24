@@ -8,7 +8,8 @@ import pincer
 
 dotenv.load_dotenv()
 
-MCODING = int(os.getenv("MCODING_SERVER"))
+MCODING = os.getenv("MCODING_SERVER")
+assert MCODING is not None
 
 if TYPE_CHECKING:
     from mcoding_bot.bot import Bot
