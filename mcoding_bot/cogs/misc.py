@@ -20,7 +20,7 @@ class Misc:
 
     @pincer.command(name="s", description="Seriously", guild=MCODING)
     async def seriously(self, ctx: pincer.objects.MessageContext):
-        return f"{ctx.author} is serious btw"
+        return f"{ctx.author.mention} is serious btw"
 
 
 setup = Misc  # noqa  # type: ignore
