@@ -31,7 +31,7 @@ frozenlist = ">=1.1.0"
 
 [[package]]
 name = "apgorm"
-version = "1.0.0b5"
+version = "1.0.0b6"
 description = "A fully type-checked asynchronous ORM wrapped around asyncpg."
 category = "main"
 optional = false
@@ -477,7 +477,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "40ff5105fded9f907e18c49f999f72a51418ba8eee55c9b4fa1a07880d8317b8"
+content-hash = "4db71cbe9c9127bff0b01807025f65d1da78cd41bfa2da7c61c9bde2297b364e"
 
 [metadata.files]
 aiohttp = [
@@ -559,8 +559,8 @@ aiosignal = [
     {file = "aiosignal-1.2.0.tar.gz", hash = "sha256:78ed67db6c7b7ced4f98e495e572106d5c432a93e1ddd1bf475e1dc05f5b7df2"},
 ]
 apgorm = [
-    {file = "apgorm-1.0.0b5-py3-none-any.whl", hash = "sha256:92f92dc5d2fb1e1d845eb149607e3cfdb9882e7704d6e9656e37208143366b72"},
-    {file = "apgorm-1.0.0b5.tar.gz", hash = "sha256:ae5bfc98b726b6a870431a4f16e0a65cbf6423339ed163f000b5abe8bad5cf1d"},
+    {file = "apgorm-1.0.0b6-py3-none-any.whl", hash = "sha256:dfa3925b8250828d00e5f6429b3cb3673951447891d36d6eaffd092bb112f372"},
+    {file = "apgorm-1.0.0b6.tar.gz", hash = "sha256:98f77bb0cdc893662964b6861c7f1048b97e9b07a927f2c2219f5a4723e40431"},
 ]
 async-timeout = [
     {file = "async-timeout-4.0.2.tar.gz", hash = "sha256:2163e1640ddb52b7a8c80d0a67a08587e5d245cc9c553a74a847056bc2976b15"},
