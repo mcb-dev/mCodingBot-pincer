@@ -52,7 +52,10 @@ async def get_stats(bot: Bot):
 def display_stats(stat):
     int_stat = stat
 
-    if int_stat < 10 ** 6:
+    if int_stat < 10 ** 3:
+        pretty_stat = int_stat
+        unit = ""
+    elif int_stat < 10 ** 6:
         pretty_stat = int_stat / 10 ** 3
         unit = "K"
     else:
