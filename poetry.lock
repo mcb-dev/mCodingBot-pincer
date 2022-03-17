@@ -31,7 +31,7 @@ frozenlist = ">=1.1.0"
 
 [[package]]
 name = "apgorm"
-version = "1.0.0b5"
+version = "1.0.0b8"
 description = "A fully type-checked asynchronous ORM wrapped around asyncpg."
 category = "main"
 optional = false
@@ -66,7 +66,7 @@ test = ["pycodestyle (>=2.7.0,<2.8.0)", "flake8 (>=3.9.2,<3.10.0)", "uvloop (>=0
 name = "atomicwrites"
 version = "1.4.0"
 description = "Atomic file writes."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
@@ -96,7 +96,7 @@ python-versions = "~=3.7"
 name = "cfgv"
 version = "3.3.1"
 description = "Validate configuration and produce human readable error messages."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6.1"
 
@@ -115,7 +115,7 @@ unicode_backport = ["unicodedata2"]
 name = "colorama"
 version = "0.4.4"
 description = "Cross-platform colored terminal text."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
@@ -123,7 +123,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 name = "distlib"
 version = "0.3.4"
 description = "Distribution utilities"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -131,7 +131,7 @@ python-versions = "*"
 name = "filelock"
 version = "3.4.2"
 description = "A platform independent file lock."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 
@@ -143,7 +143,7 @@ testing = ["covdefaults (>=1.2.0)", "coverage (>=4)", "pytest (>=4)", "pytest-co
 name = "flake8"
 version = "4.0.1"
 description = "the modular source code checker: pep8 pyflakes and co"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 
@@ -164,7 +164,7 @@ python-versions = ">=3.7"
 name = "identify"
 version = "2.4.6"
 description = "File identification library for Python"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 
@@ -183,7 +183,7 @@ python-versions = ">=3.5"
 name = "iniconfig"
 version = "1.1.1"
 description = "iniconfig: brain-dead simple config-ini parsing"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -191,7 +191,7 @@ python-versions = "*"
 name = "mccabe"
 version = "0.6.1"
 description = "McCabe checker, plugin for flake8"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -207,7 +207,7 @@ python-versions = ">=3.7"
 name = "mypy"
 version = "0.941"
 description = "Optional static typing for Python"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 
@@ -225,7 +225,7 @@ reports = ["lxml"]
 name = "mypy-extensions"
 version = "0.4.3"
 description = "Experimental type system extensions for programs checked with the mypy typechecker."
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -233,7 +233,7 @@ python-versions = "*"
 name = "nodeenv"
 version = "1.6.0"
 description = "Node.js virtual environment builder"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -241,7 +241,7 @@ python-versions = "*"
 name = "packaging"
 version = "21.3"
 description = "Core utilities for Python packages"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 
@@ -268,7 +268,7 @@ testing = ["coverage (==6.2)", "flake8 (==4.0.1)", "tox (==3.24.4)", "pre-commit
 name = "platformdirs"
 version = "2.4.1"
 description = "A small Python module for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 
@@ -280,7 +280,7 @@ test = ["appdirs (==1.4.4)", "pytest (>=6)", "pytest-cov (>=2.7)", "pytest-mock 
 name = "pluggy"
 version = "1.0.0"
 description = "plugin and hook calling mechanisms for python"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 
@@ -292,7 +292,7 @@ testing = ["pytest", "pytest-benchmark"]
 name = "pre-commit"
 version = "2.17.0"
 description = "A framework for managing and maintaining multi-language pre-commit hooks."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6.1"
 
@@ -319,7 +319,7 @@ test = ["ipaddress", "mock", "unittest2", "enum34", "pywin32", "wmi"]
 name = "py"
 version = "1.11.0"
 description = "library with cross-python path, ini-parsing, io, code, log facilities"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
@@ -327,7 +327,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 name = "pycodestyle"
 version = "2.8.0"
 description = "Python style guide checker"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
@@ -350,7 +350,7 @@ email = ["email-validator (>=1.0.3)"]
 name = "pyflakes"
 version = "2.4.0"
 description = "passive checker of Python programs"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
@@ -358,7 +358,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 name = "pyparsing"
 version = "3.0.7"
 description = "Python parsing module"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 
@@ -369,7 +369,7 @@ diagrams = ["jinja2", "railroad-diagrams"]
 name = "pytest"
 version = "7.1.0"
 description = "pytest: simple powerful testing with Python"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 
@@ -401,7 +401,7 @@ cli = ["click (>=5.0)"]
 name = "pyyaml"
 version = "6.0"
 description = "YAML parser and emitter for Python"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 
@@ -409,7 +409,7 @@ python-versions = ">=3.6"
 name = "six"
 version = "1.16.0"
 description = "Python 2 and 3 compatibility utilities"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 
@@ -417,7 +417,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 name = "toml"
 version = "0.10.2"
 description = "Python Library for Tom's Obvious, Minimal Language"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 
@@ -425,7 +425,7 @@ python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 name = "tomli"
 version = "2.0.0"
 description = "A lil' TOML parser"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 
@@ -449,7 +449,7 @@ python-versions = ">=3.6"
 name = "virtualenv"
 version = "20.13.0"
 description = "Virtual Python Environment builder"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 
@@ -478,7 +478,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "1d9ab2da5e3036379594d5375b829ce9d067af9a0ddf66703d16ded3b88cb72c"
+content-hash = "e45dee42d9a5390fb05179e4803befd052a1d30abb75d6a8e0252106e51d0a6f"
 
 [metadata.files]
 aiohttp = [
@@ -560,8 +560,8 @@ aiosignal = [
     {file = "aiosignal-1.2.0.tar.gz", hash = "sha256:78ed67db6c7b7ced4f98e495e572106d5c432a93e1ddd1bf475e1dc05f5b7df2"},
 ]
 apgorm = [
-    {file = "apgorm-1.0.0b5-py3-none-any.whl", hash = "sha256:92f92dc5d2fb1e1d845eb149607e3cfdb9882e7704d6e9656e37208143366b72"},
-    {file = "apgorm-1.0.0b5.tar.gz", hash = "sha256:ae5bfc98b726b6a870431a4f16e0a65cbf6423339ed163f000b5abe8bad5cf1d"},
+    {file = "apgorm-1.0.0b8-py3-none-any.whl", hash = "sha256:4bda9ef6ccac02332b0d614ec099f35e7aea425a648599376e3b176ba2648c39"},
+    {file = "apgorm-1.0.0b8.tar.gz", hash = "sha256:57bdf96e6235d5e6bb3ee76b8f046aab9a704e165434556bf241047fc7ba6758"},
 ]
 async-timeout = [
     {file = "async-timeout-4.0.2.tar.gz", hash = "sha256:2163e1640ddb52b7a8c80d0a67a08587e5d245cc9c553a74a847056bc2976b15"},
