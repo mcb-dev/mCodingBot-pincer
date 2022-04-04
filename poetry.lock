@@ -250,7 +250,7 @@ pyparsing = ">=2.0.2,<3.0.5 || >3.0.5"
 
 [[package]]
 name = "pincer"
-version = "0.15.3"
+version = "0.16.0"
 description = "Discord API wrapper rebuild from scratch."
 category = "main"
 optional = false
@@ -260,9 +260,9 @@ python-versions = ">=3.8"
 aiohttp = ">=3.8,<4.0"
 
 [package.extras]
-img = ["Pillow (==8.4.0)"]
+img = ["Pillow (==8.4.0)", "types-Pillow (==9.0.6)"]
 speed = ["orjson (>=3.5.4)", "Brotli (>=1.0.9)", "aiodns (>=1.1)", "cchardet (>=2.1.7)"]
-testing = ["coverage (==6.2)", "flake8 (==4.0.1)", "tox (==3.24.4)", "pre-commit (==2.16.0)", "pytest (==6.2.5)", "pytest-cov (==3.0.0)", "mypy (==0.910)"]
+testing = ["coverage (==6.3.2)", "flake8 (==4.0.1)", "tox (==3.24.4)", "pre-commit (==2.17.0)", "pytest (==6.2.5)", "pytest-cov (==3.0.0)", "mypy (==0.910)"]
 
 [[package]]
 name = "platformdirs"
@@ -478,7 +478,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "81656e7d0ef3cb1b22e7c3ab37e76ff05afa15d8837b140f1dbb333f72e1b0e6"
+content-hash = "4ed1ef61a52cc12f8dc3fb07346cf683afe8b233b8c841bfa98d7ae6ce4db6d4"
 
 [metadata.files]
 aiohttp = [
@@ -807,8 +807,8 @@ packaging = [
     {file = "packaging-21.3.tar.gz", hash = "sha256:dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb"},
 ]
 pincer = [
-    {file = "pincer-0.15.3-py3-none-any.whl", hash = "sha256:a52ff174711b0b601e6defebcd6ba8d43ec998af93b8cc38fe994d7992e7db08"},
-    {file = "pincer-0.15.3.tar.gz", hash = "sha256:4bf397bbfb09698a96b65e3c46fc23c75c55d481db932330794807c413ad2c28"},
+    {file = "pincer-0.16.0-py3-none-any.whl", hash = "sha256:23dedff40b8b938a4981ba797d3cfb8c6475af111b4c03bebcacf91b27551f16"},
+    {file = "pincer-0.16.0.tar.gz", hash = "sha256:e60c1bae567727acd224ab49e876954f34f415806e95d3a6bfb2b981381006cd"},
 ]
 platformdirs = [
     {file = "platformdirs-2.4.1-py3-none-any.whl", hash = "sha256:1d7385c7db91728b83efd0ca99a5afb296cab9d0ed8313a45ed8ba17967ecfca"},
