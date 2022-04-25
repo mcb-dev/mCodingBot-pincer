@@ -35,7 +35,7 @@ cachetools = "^5.0.0"
 types-cachetools = "^5.0.1"
 
 
-pytest = "^7.1.1"
+pytest = "^7.1.2"
 mypy = "^0.942"
 flake8 = "^4.0.1"
 pre-commit = "^2.18.1"
