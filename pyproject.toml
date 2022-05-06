@@ -38,7 +38,7 @@ types-cachetools = "^5.0.1"
 pytest = "^7.1.2"
 mypy = "^0.950"
 flake8 = "^4.0.1"
-pre-commit = "^2.18.1"
+pre-commit = "^2.19.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
