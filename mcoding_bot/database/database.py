@@ -16,14 +16,10 @@ class DecimalInt(apgorm.Converter[Decimal, int]):
 
 class NullDecimalInt(apgorm.Converter["Decimal | None", "int | None"]):
     def to_stored(self, value: int | None) -> Decimal | None:
-        if value is None:
-            return None
-        return Decimal(value)
+        return None if value is None else Decimal(value)
 
     def from_stored(self, value: Decimal | None) -> int | None:
-        if value is None:
-            return None
-        return int(value)
+        return None if value is None else int(value)
 
 
 class Message(apgorm.Model):

@@ -20,9 +20,7 @@ _T = TypeVar("_T")
 
 
 def _obj_or_none(obj: APINullable[_T]) -> _T | None:
-    if isinstance(obj, MissingType):
-        return None
-    return obj
+    return None if isinstance(obj, MissingType) else obj
 
 
 async def _orig_message(msg_id: int) -> Message | None:
