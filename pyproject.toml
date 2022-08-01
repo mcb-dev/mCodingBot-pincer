@@ -37,7 +37,7 @@ types-cachetools = "^5.2.1"
 
 pytest = "^7.1.2"
 mypy = "^0.971"
-flake8 = "^4.0.1"
+flake8 = "^5.0.2"
 pre-commit = "^2.20.0"
 
 [build-system]
